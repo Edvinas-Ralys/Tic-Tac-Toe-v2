@@ -1,0 +1,38 @@
+:root {
+  --border-main: 5px solid black;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.game-display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 500px;
+  width: 500px;
+}
+.square {
+  border: 1px solid black;
+  box-sizing: border-box;
+  border: none;
+  transition: 0.1s ease-in-out;
+}
+.game-display > *:hover {
+  background-color: rgba(135, 207, 235, 0.603);
+  transition: 0.1s ease-in-out;
+}
+.game-display > :nth-child(n + 7) {
+  border-top: var(--border-main);
+}
+.game-display > :nth-child(3n) {
+  border-left: var(--border-main);
+}
+.game-display > :nth-child(-n + 3) {
+  border-bottom: var(--border-main);
+}
+.game-display > :nth-child(3n + 1) {
+  border-right: var(--border-main);
+}
