@@ -19,6 +19,11 @@ body {
   box-sizing: border-box;
   border: none;
   transition: 0.1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 .game-display > *:hover {
   background-color: rgba(135, 207, 235, 0.603);
@@ -35,4 +40,40 @@ body {
 }
 .game-display > :nth-child(3n + 1) {
   border-right: var(--border-main);
+}
+.game-marker{
+  position: absolute;
+  padding: 0;
+  margin:0;
+  height: 100px;
+  width: 100px;
+
+}
+.player-name, .player-type{
+  display: flex;
+}
+.dialog-marker{
+  height: 50px;
+}
+.player-marker{
+  display: flex;
+justify-content: space-evenly;
+}
+.input-marker{
+  /* display: none; */
+}
+.dialog-marker{
+  fill: rgba(128, 128, 128, 0.473);
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+.dialog-marker:hover{
+  fill: gray;
+  scale: 1.1;
+  transition: 0.1s ease-in-out;
+}
+.dialog-marker:focus{
+  fill: green;
+  scale: 1.1;
+  transition: 0.1s ease-in-out;
 }

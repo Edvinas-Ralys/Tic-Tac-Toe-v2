@@ -7,6 +7,7 @@ const makePlayer = (type, name, marker, markerCount) => {
   return { type, type, name, marker, markerCount };
 };
 const playerOne = makePlayer(`Human`, `Edvinas`, `O`, 0);
+const palyerTwo = makePlayer(`Human`, `Vardaitis`, `X`, 0)
 
 const checkForWinner = () => {
   let winnerO = false;
@@ -101,6 +102,10 @@ placeMarker(1, 1, playerOne);
 placeMarker(2, 2, playerOne);
 console.log(gameBoard);
 
+
+
+
+
 //Game board dispaly
 const gameDisplay = document.querySelector(`.game-display`);
 for (let i = 0; i < 9; i++) {
@@ -122,3 +127,17 @@ for (let i = 0; i < 9; i++) {
   square.classList.add(`square`);
   gameDisplay.appendChild(square);
 }
+const displayMarkerO = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`
+const dispalyMarkerX = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>`
+const squares = gameDisplay.querySelectorAll(`.square`)
+squares.forEach(item=>{
+  item.addEventListener(`click`, ()=>{
+    if(item.innerHTML == ``){
+      item.innerHTML = dispalyMarkerX
+      console.log(`row: ${item.dataset.row}, column: ${item.dataset.col}`)
+    }
+  })
+})
+
+//Dialog marker animation
+
