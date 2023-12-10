@@ -344,12 +344,46 @@ squares.forEach(item =>{
     secondPlayerDisplay.classList.add(`winner-two`)
     item.style.backgroundColor = clickedSquareClr
   }
-}})
+} if(playerOne.markerCount + playerTwo.markerCount == 9){
+  secondPlayerDisplay.classList.remove(`active-two`),
+  firstPlayerDisplay.classList.remove(`active-one`)
+}
 })
+})
+const resetSquares = ()=>{
+  squares.forEach(item=>{
+    item.innerHTML = ``
+    item.style.backgroundColor = ``
+
+    playerOne = makePlayer(
+      playerOneType.value,
+      playerOneName.value,
+      playerMarker(playerOneMarkers),
+  0
+    );
+    playerTwo = makePlayer(
+      playerTwoType.value,
+      playerTwoName.value,
+      playerMarker(playerTwoMarkers),
+      0
+    );
+    item.classList.remove(`unclickable`)
+    firstPlayerDisplay.classList.remove(`active-one`)
+    secondPlayerDisplay.classList.remove(`active-two`),
+    secondPlayerDisplay.classList.remove(`winner-two`);
+    firstPlayerDisplay.classList.remove(`winner-one`)
+  })
+}
 
 const resetButton = document.querySelector(`.reset-game`);
 resetButton.addEventListener(`click`, ()=>{
-  resetButton.classList.add(`reset-game-focus`)
+resetSquares()
+  gameBoard = [
+    [``, ``, ``],
+    [``, ``, ``],
+    [``, ``, ``],
+  ];
+  displayCurrentTurn();
 })
 
 
@@ -357,6 +391,7 @@ resetButton.addEventListener(`click`, ()=>{
 const startButton = document.querySelector(`.start-button`);
 startButton.addEventListener(`click`, () => {
   dialogWindow.close();
+  resetSquares()
   playerOne = makePlayer(
     playerOneType.value,
     playerOneName.value,
@@ -372,6 +407,11 @@ startButton.addEventListener(`click`, () => {
   displayPlayers(firstPlayerDisplay, playerOne),
   displayPlayers(secondPlayerDisplay, playerTwo)
   displayCurrentTurn()
+  gameBoard = [
+    [``, ``, ``],
+    [``, ``, ``],
+    [``, ``, ``],
+  ];
   console.log(playerOne);
   console.log(playerTwo);
 });

@@ -165,6 +165,7 @@ background:linear-gradient(90deg, var(--gradient-start-off), var(--background-co
   background:linear-gradient(90deg, var(--gradient-start-on), var(--background-color));
 }
 .active-two{
+  transition: 1s ease-in-out;
   background:linear-gradient(270deg, var(--gradient-start-on), var(--background-color));
 }
 .winner-one{
