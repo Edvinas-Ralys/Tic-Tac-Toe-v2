@@ -1,5 +1,7 @@
 :root {
-  --border-main: 5px solid black;
+  --border-main: 10px solid black;
+  --marker-color:white;
+  --game-board-color:rgb(50, 53, 77);
 }
 
 body {
@@ -7,6 +9,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  gap: 50px;
+  background-color: rgb(17, 21, 37);
 }
 .game-display {
   display: grid;
@@ -26,22 +30,27 @@ body {
   width: 100%;
 }
 .game-display > *:hover {
-  background-color: rgba(135, 207, 235, 0.603);
+  background-color: rgba(30, 47, 54, 0.603);
   transition: 0.1s ease-in-out;
 }
 .game-display > :nth-child(n + 7) {
   border-top: var(--border-main);
+  border-color: var(--game-board-color);
 }
 .game-display > :nth-child(3n) {
   border-left: var(--border-main);
+  border-color: var(--game-board-color);
 }
 .game-display > :nth-child(-n + 3) {
   border-bottom: var(--border-main);
+  border-color: var(--game-board-color);
 }
 .game-display > :nth-child(3n + 1) {
   border-right: var(--border-main);
+  border-color: var(--game-board-color);
 }
 .game-marker{
+  fill: var( --marker-color);
   position: absolute;
   padding: 0;
   margin:0;
@@ -56,6 +65,7 @@ body {
   height: 50px;
 }
 .player-marker{
+
   display: flex;
 justify-content: space-evenly;
 }
@@ -76,4 +86,48 @@ justify-content: space-evenly;
   fill: green;
   scale: 1.1;
   transition: 0.1s ease-in-out;
+}
+.settings-marker-cog{
+  height: 100px;
+}
+dialog{
+  background-color: black;
+  opacity: 70%;
+  color: white;
+  width: 500px;
+  height: 300px;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.players{
+  display: flex;
+height: 80%;
+align-items: center;
+gap: 30px;
+}
+.first-player{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  text-align: center;
+  justify-content:space-around;
+}
+.name{
+  font-size: 40px;
+}
+.start-button{
+  width: 50%;
+  height: 30px;
+  border-radius: 20px;
+  justify-content: center;
+  font-size: 25px;
+}
+.game{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
