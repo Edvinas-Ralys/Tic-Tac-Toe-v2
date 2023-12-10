@@ -91,11 +91,7 @@ const placeMarker = (row, column, player) => {
       item.splice(column, 1, player.marker);
     }
   });
-  if (checkForWinner() == `O`) {
-    console.log(`O won`);
-  } else if (checkForWinner() == `X`) {
-    console.log(`X won`);
-  }
+
 };
 
 // placeMarker(0, 0, playerOne);
@@ -127,9 +123,13 @@ for (let i = 0; i < 9; i++) {
 const displayMarkerO = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
 const displayMarkerX = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>`;
 const squares = gameDisplay.querySelectorAll(`.square`);
+
+
 squares.forEach((item) => {
   item.addEventListener(`click`, () => {
-    //First move
+    console.log(gameBoard)
+    console.log(checkForWinner())
+    if(checkForWinner() != `X` && checkForWinner() != `O`){
     if (item.innerHTML == ``) {
       if (playerOne.markerCount == 0 && playerTwo.markerCount == 0) {
         if (playerOne.marker == `O`) {
@@ -151,11 +151,12 @@ squares.forEach((item) => {
         playerTwo.markerCount != 0 &&
         playerOne.markerCount == playerTwo.markerCount
       ) {
-        if ((playerOne.marker = `O`)) {
+        if ((playerOne.marker == `O`)) {
           item.innerHTML = displayMarkerO;
           playerOne.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerOne);
           console.log(`Player ONE`);
+          console.log(`Player ONE MARKER: ${playerOne.marker}`)
           return `placed`
         } else if (playerTwo.marker == `O`) {
           item.innerHTML = displayMarkerO;
@@ -183,8 +184,11 @@ squares.forEach((item) => {
         console.log(`Player TWO`);
       }
     }
-  });
-});
+  }
+else{
+  console.log(`WE HAVE A WINNER`)
+}});
+})
 
 //Dialog open on page load
 const dialogWindow = document.querySelector(`dialog`);
