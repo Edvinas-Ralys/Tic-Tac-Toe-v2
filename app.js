@@ -120,17 +120,32 @@ for (let i = 0; i < 9; i++) {
   square.classList.add(`square`);
   gameDisplay.appendChild(square);
 }
-const displayMarkerO = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
-const displayMarkerX = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>`;
+const displayMarkerO = `<svg class = 'game-marker O' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
+const displayMarkerX = `<svg class = 'game-marker X' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>`;
 const sideO = `<svg class = 'side-screen' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
 const sideX = `<svg class = 'side-screen' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>`;
 const squares = gameDisplay.querySelectorAll(`.square`);
+
+//Display winning squares
+const dispalyWinnigSquares = () =>{
+  squares.forEach(item=>{
+    console.log(item.innerHTML)
+    console.log(item.classList.contains(`game-marker O`))
+
+    if(item.innerText == displayMarkerO ||item.innerHTML == displayMarkerX ){
+      console.log(`square`)
+      item.style.backgroundColor = `black`
+    }
+  })
+}
+
+
 
 
 squares.forEach((item) => {
   item.addEventListener(`click`, () => {
     console.log(gameBoard)
-    console.log(checkForWinner())
+
     if(checkForWinner() != `X` && checkForWinner() != `O`){
     if (item.innerHTML == ``) {
       if (playerOne.markerCount == 0 && playerTwo.markerCount == 0) {
@@ -138,13 +153,11 @@ squares.forEach((item) => {
           item.innerHTML = displayMarkerO;
           playerOne.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerOne);
-          console.log(`Player ONE`);
           return
         } else if (playerTwo.marker == `O`) {
           item.innerHTML = displayMarkerO;
           playerTwo.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerTwo);
-          console.log(`Player TWO`);
           return
         }
       }
@@ -157,13 +170,19 @@ squares.forEach((item) => {
           item.innerHTML = displayMarkerO;
           playerOne.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerOne);
-          console.log(`Player ONE`);
-          console.log(`Player ONE MARKER: ${playerOne.marker}`)
+          if(checkForWinner() == `X` || checkForWinner() == `O`){
+            console.log(`WE DO HAVE A WINNER`)
+            dispalyWinnigSquares()
+          }
           return
         } else if (playerTwo.marker == `O`) {
           item.innerHTML = displayMarkerO;
           playerTwo.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerTwo);
+          if(checkForWinner() == `X` || checkForWinner() == `O`){
+            console.log(`WE DO HAVE A WINNER`)
+            dispalyWinnigSquares()
+          }
           return
         }
       }
@@ -174,7 +193,10 @@ squares.forEach((item) => {
         item.innerHTML = displayMarkerX;
         playerOne.markerCount++;
         placeMarker(item.dataset.row, item.dataset.col, playerOne);
-        console.log(`Player ONE`);
+        if(checkForWinner() == `X` || checkForWinner() == `O`){
+          console.log(`WE DO HAVE A WINNER`)
+          dispalyWinnigSquares()
+        }
       } else if (
         playerTwo.marker == `X` &&
         playerTwo.markerCount < playerOne.markerCount
@@ -182,14 +204,17 @@ squares.forEach((item) => {
         item.innerHTML = displayMarkerX;
         playerTwo.markerCount++;
         placeMarker(item.dataset.row, item.dataset.col, playerTwo);
-        console.log(`Player TWO`);
+        if(checkForWinner() == `X` || checkForWinner() == `O`){
+          console.log(`WE DO HAVE A WINNER`)
+          dispalyWinnigSquares()
+        }
       }
     }
   }
-else{
-  console.log(`WE HAVE A WINNER`)
-}});
+  });
 })
+
+
 
 
 
@@ -230,6 +255,7 @@ const playerMarker = (markerSelect) => {
 };
 
 //Radio button selection animation
+//Prevents from picking the same marker
 const firstO = document.querySelector(`.first-o`)
 const firstX = document.querySelector(`.first-x`)
 const secondO = document.querySelector(`.second-o`)
@@ -264,7 +290,7 @@ secondX.addEventListener(`click`, ()=>{
   secondO.classList.remove(`marker-selected`);
   firstO.classList.add(`marker-selected`)
   firstX.classList.remove(`marker-selected`)
-  secondX.checked = true
+  firstOInp.checked = true
 })
 
 
@@ -301,25 +327,30 @@ const displayCurrentTurn = () =>{
 }
 
 //Switch display on turn
+const clickedSquareClr = `rgba(30, 47, 54, 0.603)`
 squares.forEach(item =>{
   item.addEventListener(`click`, ()=>{
     if(checkForWinner() != `X` && checkForWinner() != `O`){
     if(firstPlayerDisplay.classList.contains(`active-one`)){
       firstPlayerDisplay.classList.remove(`active-one`)
       secondPlayerDisplay.classList.add(`active-two`)
+      item.style.backgroundColor = clickedSquareClr
     }
     else if(secondPlayerDisplay.classList.contains(`active-two`)){
       secondPlayerDisplay.classList.remove(`active-two`),
       firstPlayerDisplay.classList.add(`active-one`)
+      item.style.backgroundColor = clickedSquareClr
     }
   }
   if(checkForWinner() == `X` || checkForWinner() == `O`){
     if(firstPlayerDisplay.classList.contains(`active-one`)){
       firstPlayerDisplay.classList.remove(`active-one`)
       firstPlayerDisplay.classList.add(`winner-one`)
+      item.style.backgroundColor = clickedSquareClr
     }else if(secondPlayerDisplay.classList.contains(`active-two`) ){
     secondPlayerDisplay.classList.remove(`active-two`),
     secondPlayerDisplay.classList.add(`winner-two`)
+    item.style.backgroundColor = clickedSquareClr
   }
 }})
 })
@@ -328,6 +359,7 @@ const resetButton = document.querySelector(`.reset-game`);
 resetButton.addEventListener(`click`, ()=>{
   resetButton.classList.add(`reset-game-focus`)
 })
+
 
 //Dialog close in start
 const startButton = document.querySelector(`.start-button`);

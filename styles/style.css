@@ -1,7 +1,7 @@
 :root {
   --border-main: 10px solid black;
   --marker-color:white;
-  --game-board-color:rgb(46, 48, 65);
+  --game-board-color:rgb(145, 147, 167);
   --background-color:rgb(17, 21, 37);
   --gradient-start-off:rgb(52, 53, 65);
   --gradient-start-on:rgb(165, 169, 199);
@@ -23,7 +23,6 @@ grid-template-columns: repeat(3, 1fr);
   width: 500px;
 }
 .square {
-  border: 1px solid black;
   box-sizing: border-box;
   border: none;
   transition: 0.1s ease-in-out;
@@ -64,6 +63,7 @@ grid-template-columns: repeat(3, 1fr);
 }
 .player-name, .player-type{
   display: flex;
+  justify-content: space-between;
 }
 .dialog-marker{
   height: 50px;
@@ -89,20 +89,34 @@ justify-content: space-evenly;
 }
 dialog{
   background-color: black;
-  opacity: 70%;
+  opacity: 90%;
   color: white;
-  width: 500px;
-  height: 300px;
+  width: 700px;
+  height: 500px;
   /* display: flex; */
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  border-radius: 10px;
+}
+dialog::backdrop{
+  filter: blur(6px);
+}
+.all-dialog{
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+  gap:30px;
 }
 .players{
-  display: flex;
+display: flex;
 height: 80%;
 align-items: center;
 gap: 30px;
+width: 100%;
+justify-content: space-around;
 }
 .first-player{
   height: 100%;
@@ -113,14 +127,21 @@ gap: 30px;
   justify-content:space-around;
 }
 .name{
-  font-size: 40px;
+  font-size: 60px;
 }
 .start-button{
-  width: 50%;
-  height: 30px;
+  width: 30%;
+  height: 45px;
   border-radius: 20px;
   justify-content: center;
   font-size: 25px;
+  cursor: pointer;
+  background-color: gray;
+  transition: 0.2s ease-in-out;
+}
+.start-button:hover{
+  background-color: white;
+  transition: 0.2s ease-in-out;
 }
 .game{
   display: flex;
