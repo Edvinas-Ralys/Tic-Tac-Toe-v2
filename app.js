@@ -122,6 +122,8 @@ for (let i = 0; i < 9; i++) {
 }
 const displayMarkerO = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
 const displayMarkerX = `<svg class = 'game-marker' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>`;
+const sideO = `<svg class = 'side-screen' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
+const sideX = `<svg class = 'side-screen' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>`;
 const squares = gameDisplay.querySelectorAll(`.square`);
 
 
@@ -137,13 +139,13 @@ squares.forEach((item) => {
           playerOne.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerOne);
           console.log(`Player ONE`);
-          return `placed`
+          return
         } else if (playerTwo.marker == `O`) {
           item.innerHTML = displayMarkerO;
           playerTwo.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerTwo);
           console.log(`Player TWO`);
-          return `placed`
+          return
         }
       }
       if (
@@ -157,13 +159,12 @@ squares.forEach((item) => {
           placeMarker(item.dataset.row, item.dataset.col, playerOne);
           console.log(`Player ONE`);
           console.log(`Player ONE MARKER: ${playerOne.marker}`)
-          return `placed`
+          return
         } else if (playerTwo.marker == `O`) {
           item.innerHTML = displayMarkerO;
           playerTwo.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerTwo);
-          console.log(`Player TWO`);
-          return `placed`
+          return
         }
       }
       if (
@@ -223,6 +224,63 @@ const playerMarker = (markerSelect) => {
   return selectedMarker;
 };
 
+
+const firstPlayerDisplay = document.querySelector(`.playerone`);
+const secondPlayerDisplay = document.querySelector(`.playertwo`)
+const displayPlayers = (playerDisplay, playerNumber) =>{
+const playerName = playerDisplay.querySelector(`.name`)
+playerName.innerHTML = playerNumber.name
+
+const playerMarkerDisplay = playerDisplay.querySelector(`.marker`)
+console.log(playerDisplay)
+console.log(playerMarkerDisplay)
+if(playerNumber.marker == `O`){
+console.log(`player is O`)
+  playerMarkerDisplay.innerHTML = sideO
+}
+else if( playerNumber.marker == `X`){
+  playerMarkerDisplay.innerHTML = sideX
+}
+}
+
+
+//Initial dispaly of player turn
+const displayCurrentTurn = () =>{
+  if(playerOne.markerCount == 0 && playerTwo.markerCount == 0){
+    if(playerOne.marker == `O`){
+      firstPlayerDisplay.classList.add(`active-one`)
+    }
+    else if(playerTwo.marker == `O`){
+      secondPlayerDisplay.classList.add(`active-two`)
+    }
+  }
+}
+
+//Switch display on turn
+squares.forEach(item =>{
+  item.addEventListener(`click`, ()=>{
+    if(checkForWinner() != `X` && checkForWinner() != `O`){
+    if(firstPlayerDisplay.classList.contains(`active-one`)){
+      firstPlayerDisplay.classList.remove(`active-one`)
+      secondPlayerDisplay.classList.add(`active-two`)
+    }
+    else if(secondPlayerDisplay.classList.contains(`active-two`)){
+      secondPlayerDisplay.classList.remove(`active-two`),
+      firstPlayerDisplay.classList.add(`active-one`)
+    }
+  }
+  if(checkForWinner() == `X` || checkForWinner() == `O`){
+    if(firstPlayerDisplay.classList.contains(`active-one`)){
+      firstPlayerDisplay.classList.remove(`active-one`)
+      firstPlayerDisplay.classList.add(`winner-one`)
+    }else if(secondPlayerDisplay.classList.contains(`active-two`) ){
+    secondPlayerDisplay.classList.remove(`active-two`),
+    secondPlayerDisplay.classList.add(`winner-two`)
+  }
+}})
+})
+
+
 //Dialog close in start
 const startButton = document.querySelector(`.start-button`);
 startButton.addEventListener(`click`, () => {
@@ -231,7 +289,7 @@ startButton.addEventListener(`click`, () => {
     playerOneType.value,
     playerOneName.value,
     playerMarker(playerOneMarkers),
-    0
+0
   );
   playerTwo = makePlayer(
     playerTwoType.value,
@@ -239,6 +297,9 @@ startButton.addEventListener(`click`, () => {
     playerMarker(playerTwoMarkers),
     0
   );
+  displayPlayers(firstPlayerDisplay, playerOne),
+  displayPlayers(secondPlayerDisplay, playerTwo)
+  displayCurrentTurn()
   console.log(playerOne);
   console.log(playerTwo);
 });

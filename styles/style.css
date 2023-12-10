@@ -2,15 +2,19 @@
   --border-main: 10px solid black;
   --marker-color:white;
   --game-board-color:rgb(50, 53, 77);
+  --background-color:rgb(17, 21, 37);
+  --gradient-start-off:rgb(52, 53, 65);
+  --gradient-start-on:rgb(165, 169, 199);
+  --gradient-start-winner: rgb(133, 223, 188);
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
   height: 100vh;
-  gap: 50px;
-  background-color: rgb(17, 21, 37);
+  gap: 150px;
+
+  background-color: var(--background-color);
 }
 .game-display {
   display: grid;
@@ -130,4 +134,29 @@ gap: 30px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.playerone{
+background:linear-gradient(90deg, var(--gradient-start-off), var(--background-color));
+}
+.playertwo{
+  background:linear-gradient(270deg, var(--gradient-start-off), var(--background-color));
+}
+.side-screen{
+  fill: green;
+  height: 50px;
+  width: 50px;
+}
+.active-one{
+  transition: 2s ease-in-out;
+  background:linear-gradient(90deg, var(--gradient-start-on), var(--background-color));
+}
+.active-two{
+  background:linear-gradient(270deg, var(--gradient-start-on), var(--background-color));
+}
+.winner-one{
+  background:linear-gradient(90deg, var(--gradient-start-winner), var(--background-color));
+}
+.winner-two{
+  background:linear-gradient(270deg, var(--gradient-start-winner), var(--background-color));
+
 }
