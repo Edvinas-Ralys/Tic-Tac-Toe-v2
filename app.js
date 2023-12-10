@@ -191,6 +191,8 @@ else{
 }});
 })
 
+
+
 //Dialog open on page load
 const dialogWindow = document.querySelector(`dialog`);
 window.addEventListener(`load`, () => {
@@ -208,6 +210,8 @@ const playerOneType = dialogWindow.querySelector(`.player-one-type`);
 const playerOneName = dialogWindow.querySelector(`.player-one-name`);
 const playerOneMarkers = document.getElementsByName(`first-player-select`);
 
+
+
 //Player TWO
 const playerTwoType = dialogWindow.querySelector(`.player-two-type`);
 const playerTwoName = dialogWindow.querySelector(`.player-two-name`);
@@ -219,10 +223,50 @@ const playerMarker = (markerSelect) => {
   for (let i = 0; i < markerSelect.length; i++) {
     if (markerSelect[i].checked == true) {
       selectedMarker = markerSelect[i].value;
+      markerSelect[i].classList.add(`marker-selected`)
     }
   }
   return selectedMarker;
 };
+
+//Radio button selection animation
+const firstO = document.querySelector(`.first-o`)
+const firstX = document.querySelector(`.first-x`)
+const secondO = document.querySelector(`.second-o`)
+const secondX = document.querySelector(`.second-x`)
+const firstOInp = document.querySelector(`#marker-select-o`)
+const firstXInp = document.querySelector(`#marker-select-x`)
+const secondOInp = document.querySelector(`#marker-select-o-second`)
+const secondXInp = document.querySelector(`#marker-select-x-second`)
+firstO.addEventListener(`click`, ()=>{
+  firstO.classList.add(`marker-selected`)
+  firstX.classList.remove(`marker-selected`)
+  secondX.classList.add(`marker-selected`)
+  secondO.classList.remove(`marker-selected`)
+  secondXInp.checked = true;
+})
+firstX.addEventListener(`click`, ()=>{
+  firstX.classList.add(`marker-selected`)
+  firstO.classList.remove(`marker-selected`)
+  secondO.classList.add(`marker-selected`)
+  secondX.classList.remove(`marker-selected`)
+  secondOInp.checked = true
+})
+secondO.addEventListener(`click`, ()=>{
+  secondO.classList.add(`marker-selected`)
+  secondX.classList.remove(`marker-selected`)
+  firstX.classList.add(`marker-selected`)
+  firstO.classList.remove(`marker-selected`)
+  firstXInp.checked = true
+})
+secondX.addEventListener(`click`, ()=>{
+  secondX.classList.add(`marker-selected`);
+  secondO.classList.remove(`marker-selected`);
+  firstO.classList.add(`marker-selected`)
+  firstX.classList.remove(`marker-selected`)
+  secondX.checked = true
+})
+
 
 
 const firstPlayerDisplay = document.querySelector(`.playerone`);
@@ -280,6 +324,10 @@ squares.forEach(item =>{
 }})
 })
 
+const resetButton = document.querySelector(`.reset-game`);
+resetButton.addEventListener(`click`, ()=>{
+  resetButton.classList.add(`reset-game-focus`)
+})
 
 //Dialog close in start
 const startButton = document.querySelector(`.start-button`);

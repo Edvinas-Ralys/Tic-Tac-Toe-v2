@@ -1,7 +1,7 @@
 :root {
   --border-main: 10px solid black;
   --marker-color:white;
-  --game-board-color:rgb(50, 53, 77);
+  --game-board-color:rgb(46, 48, 65);
   --background-color:rgb(17, 21, 37);
   --gradient-start-off:rgb(52, 53, 65);
   --gradient-start-on:rgb(165, 169, 199);
@@ -73,25 +73,18 @@ grid-template-columns: repeat(3, 1fr);
   display: flex;
 justify-content: space-evenly;
 }
-.input-marker{
-  /* display: none; */
-}
+
 .dialog-marker{
   fill: rgba(128, 128, 128, 0.473);
   cursor: pointer;
   transition: 0.1s ease-in-out;
 }
 .dialog-marker:hover{
-  fill: gray;
-  scale: 1.1;
-  transition: 0.1s ease-in-out;
+  scale: 1.25;
+  transition: 0.15s ease-in-out;
 }
-.dialog-marker:focus{
-  fill: green;
-  scale: 1.1;
-  transition: 0.1s ease-in-out;
-}
-.settings-marker-cog{
+
+.settings-marker-cog, .reset-game{
   height: 100px;
 }
 dialog{
@@ -160,3 +153,14 @@ background:linear-gradient(90deg, var(--gradient-start-off), var(--background-co
   background:linear-gradient(270deg, var(--gradient-start-winner), var(--background-color));
 
 }
+.reset-game{
+  cursor: pointer;
+}
+.input-marker{
+  display: none;
+}
+.marker-selected{
+  fill: white;
+  scale: 1.25;
+}
+
