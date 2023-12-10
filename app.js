@@ -151,13 +151,17 @@ squares.forEach((item) => {
       if (playerOne.markerCount == 0 && playerTwo.markerCount == 0) {
         if (playerOne.marker == `O`) {
           item.innerHTML = displayMarkerO;
+
           playerOne.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerOne);
+          item.classList.add(`unclickable`)
           return
         } else if (playerTwo.marker == `O`) {
+
           item.innerHTML = displayMarkerO;
           playerTwo.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerTwo);
+          item.classList.add(`unclickable`)
           return
         }
       }
@@ -170,19 +174,13 @@ squares.forEach((item) => {
           item.innerHTML = displayMarkerO;
           playerOne.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerOne);
-          if(checkForWinner() == `X` || checkForWinner() == `O`){
-            console.log(`WE DO HAVE A WINNER`)
-            dispalyWinnigSquares()
-          }
+          item.classList.add(`unclickable`)
           return
         } else if (playerTwo.marker == `O`) {
           item.innerHTML = displayMarkerO;
           playerTwo.markerCount++;
           placeMarker(item.dataset.row, item.dataset.col, playerTwo);
-          if(checkForWinner() == `X` || checkForWinner() == `O`){
-            console.log(`WE DO HAVE A WINNER`)
-            dispalyWinnigSquares()
-          }
+          item.classList.add(`unclickable`)
           return
         }
       }
@@ -193,10 +191,7 @@ squares.forEach((item) => {
         item.innerHTML = displayMarkerX;
         playerOne.markerCount++;
         placeMarker(item.dataset.row, item.dataset.col, playerOne);
-        if(checkForWinner() == `X` || checkForWinner() == `O`){
-          console.log(`WE DO HAVE A WINNER`)
-          dispalyWinnigSquares()
-        }
+        item.classList.add(`unclickable`)
       } else if (
         playerTwo.marker == `X` &&
         playerTwo.markerCount < playerOne.markerCount
@@ -204,10 +199,7 @@ squares.forEach((item) => {
         item.innerHTML = displayMarkerX;
         playerTwo.markerCount++;
         placeMarker(item.dataset.row, item.dataset.col, playerTwo);
-        if(checkForWinner() == `X` || checkForWinner() == `O`){
-          console.log(`WE DO HAVE A WINNER`)
-          dispalyWinnigSquares()
-        }
+        item.classList.add(`unclickable`)
       }
     }
   }
