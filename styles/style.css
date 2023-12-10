@@ -1,19 +1,19 @@
 :root {
   --border-main: 10px solid black;
-  --marker-color:white;
-  --game-board-color:rgb(145, 147, 167);
-  --background-color:rgb(17, 21, 37);
-  --gradient-start-off:rgb(52, 53, 65);
-  --gradient-start-on:rgb(165, 169, 199);
+  --marker-color: white;
+  --game-board-color: rgb(145, 147, 167);
+  --background-color: rgb(17, 21, 37);
+  --gradient-start-off: rgb(52, 53, 65);
+  --gradient-start-on: rgb(165, 169, 199);
   --gradient-start-winner: rgb(133, 223, 188);
 }
 
 body {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   height: 100vh;
   gap: 150px;
-
+font-family: oswald;
   background-color: var(--background-color);
 }
 .game-display {
@@ -52,42 +52,42 @@ grid-template-columns: repeat(3, 1fr);
   border-right: var(--border-main);
   border-color: var(--game-board-color);
 }
-.game-marker{
-  fill: var( --marker-color);
+.game-marker {
+  fill: var(--marker-color);
   position: absolute;
   padding: 0;
-  margin:0;
+  margin: 0;
   height: 100px;
   width: 100px;
-
 }
-.player-name, .player-type{
+.player-name,
+.player-type {
   display: flex;
   justify-content: space-between;
 }
-.dialog-marker{
+.dialog-marker {
   height: 50px;
 }
-.player-marker{
-
+.player-marker {
   display: flex;
-justify-content: space-evenly;
+  justify-content: space-evenly;
 }
 
-.dialog-marker{
+.dialog-marker {
   fill: rgba(128, 128, 128, 0.473);
   cursor: pointer;
   transition: 0.1s ease-in-out;
 }
-.dialog-marker:hover{
+.dialog-marker:hover {
   scale: 1.25;
   transition: 0.15s ease-in-out;
 }
 
-.settings-marker-cog, .reset-game{
+.settings-marker-cog,
+.reset-game {
   height: 100px;
 }
-dialog{
+dialog {
   background-color: black;
   opacity: 90%;
   color: white;
@@ -99,37 +99,44 @@ dialog{
   gap: 20px;
   border-radius: 10px;
 }
-dialog::backdrop{
+dialog::backdrop {
   filter: blur(6px);
 }
-.all-dialog{
+.all-dialog {
   display: flex;
   flex-direction: column;
   height: 90%;
   align-items: center;
   justify-content: center;
-  gap:30px;
+  gap: 30px;
 }
-.players{
-display: flex;
-height: 80%;
-align-items: center;
-gap: 30px;
-width: 100%;
-justify-content: space-around;
+.players {
+  display: flex;
+  height: 80%;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  justify-content: space-around;
 }
-.first-player{
+.first-player {
   height: 100%;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
   text-align: center;
-  justify-content:space-around;
+  justify-content: space-around;
 }
-.name{
+.player{
   font-size: 60px;
 }
-.start-button{
+.name {
+  font-size: 60px;
+  color: rgba(128, 128, 128, 0.233);
+}
+.name-active{
+  color:black;
+}
+.start-button {
   width: 30%;
   height: 45px;
   border-radius: 20px;
@@ -139,53 +146,75 @@ justify-content: space-around;
   background-color: gray;
   transition: 0.2s ease-in-out;
 }
-.start-button:hover{
+.start-button:hover {
   background-color: white;
   transition: 0.2s ease-in-out;
 }
-.game{
+.game {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.playerone{
-background:linear-gradient(90deg, var(--gradient-start-off), var(--background-color));
+.playerone {
+  background: linear-gradient(
+    90deg,
+    var(--gradient-start-off),
+    var(--background-color)
+  );
 }
-.playertwo{
-  background:linear-gradient(270deg, var(--gradient-start-off), var(--background-color));
+.playertwo {
+  background: linear-gradient(
+    270deg,
+    var(--gradient-start-off),
+    var(--background-color)
+  );
 }
-.side-screen{
+.side-screen {
   fill: green;
   height: 50px;
   width: 50px;
 }
-.active-one{
+.active-one {
   transition: 2s ease-in-out;
-  background:linear-gradient(90deg, var(--gradient-start-on), var(--background-color));
+  background: linear-gradient(
+    90deg,
+    var(--gradient-start-on),
+    var(--background-color)
+  );
 }
-.active-two{
+.active-two {
   transition: 1s ease-in-out;
-  background:linear-gradient(270deg, var(--gradient-start-on), var(--background-color));
+  background: linear-gradient(
+    270deg,
+    var(--gradient-start-on),
+    var(--background-color)
+  );
 }
-.winner-one{
-  background:linear-gradient(90deg, var(--gradient-start-winner), var(--background-color));
+.winner-one {
+  background: linear-gradient(
+    90deg,
+    var(--gradient-start-winner),
+    var(--background-color)
+  );
 }
-.winner-two{
-  background:linear-gradient(270deg, var(--gradient-start-winner), var(--background-color));
-
+.winner-two {
+  background: linear-gradient(
+    270deg,
+    var(--gradient-start-winner),
+    var(--background-color)
+  );
 }
-.reset-game{
+.reset-game {
   cursor: pointer;
 }
-.input-marker{
+.input-marker {
   display: none;
 }
-.marker-selected{
+.marker-selected {
   fill: white;
   scale: 1.25;
 }
-.unclickable{
+.unclickable {
   pointer-events: none;
 }
-

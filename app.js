@@ -297,7 +297,6 @@ const playerMarkerDisplay = playerDisplay.querySelector(`.marker`)
 console.log(playerDisplay)
 console.log(playerMarkerDisplay)
 if(playerNumber.marker == `O`){
-console.log(`player is O`)
   playerMarkerDisplay.innerHTML = sideO
 }
 else if( playerNumber.marker == `X`){
@@ -311,12 +310,14 @@ const displayCurrentTurn = () =>{
   if(playerOne.markerCount == 0 && playerTwo.markerCount == 0){
     if(playerOne.marker == `O`){
       firstPlayerDisplay.classList.add(`active-one`)
+
     }
     else if(playerTwo.marker == `O`){
       secondPlayerDisplay.classList.add(`active-two`)
     }
   }
 }
+
 
 //Switch display on turn
 const clickedSquareClr = `rgba(30, 47, 54, 0.603)`
@@ -392,6 +393,13 @@ const startButton = document.querySelector(`.start-button`);
 startButton.addEventListener(`click`, () => {
   dialogWindow.close();
   resetSquares()
+  if(playerOneName.value == ``){
+    playerOneName.value = `Bot-Man No.1`
+  }
+  if(playerTwoName.value == ``){
+    playerTwoName.value = `Bot-Man No.2`
+  }
+  console.log(playerOneName.value)
   playerOne = makePlayer(
     playerOneType.value,
     playerOneName.value,
