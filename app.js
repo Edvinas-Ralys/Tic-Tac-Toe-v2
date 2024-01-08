@@ -304,13 +304,14 @@ else if( playerNumber.marker == `X`){
 }
 }
 
+const playerOneSideMarker = document.querySelector(`side-screen`)
 
 //Initial dispaly of player turn
 const displayCurrentTurn = () =>{
   if(playerOne.markerCount == 0 && playerTwo.markerCount == 0){
     if(playerOne.marker == `O`){
       firstPlayerDisplay.classList.add(`active-one`)
-
+      playerOneSideMarker.classList.add(`active-one-marker`)
     }
     else if(playerTwo.marker == `O`){
       secondPlayerDisplay.classList.add(`active-two`)
